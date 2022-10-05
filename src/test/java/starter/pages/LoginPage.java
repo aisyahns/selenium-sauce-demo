@@ -2,6 +2,9 @@ package starter.pages;
 
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 public class LoginPage extends PageObject {
     //komponen dan interaksi yang akan dilakukan pada login page akan aku define di sini
@@ -35,6 +38,12 @@ public class LoginPage extends PageObject {
         $(headerProduct()).isDisplayed();
     } //mencari elemen2 unik di page lain
 
+    public void scrollDown(){
+//        $("//body").sendKeys(Keys.END);
+        $("//body").sendKeys(Keys.END);
+        $("//body").sendKeys(Keys.chord(Keys.ALT, Keys.DELETE)); //kita mau kasih keyboard yg saling berbarengan
+    }
+
     public void openUrl(){
         openAt("/");
     }
@@ -51,6 +60,7 @@ public class LoginPage extends PageObject {
 
     public void inputPassword(String password){
         $(fieldPassword()).type(password);
+        $(fieldPassword()).type(Keys.chord(Keys.END));
     }
 
     public void clickLoginBtn(){

@@ -45,5 +45,24 @@ public class LoginStep {
     @Then("I will go to dashboard")
     public void iWillGoToDashboard() {
         loginPage.headerDisplayed();
+        loginPage.scrollDown();
+    }
+
+    @Then("I will get the {string}")
+    public void iWillGetThe(String result) {
+        // result : i can't login, i can login
+        // i can't login, tetep di halaman login
+        // i can login, aku akan masuk ke dashboard
+        if (result.equals("i can't login")) {
+            loginPage.errorMessageDisplayed();
+        } else if (result.equals("i can login")){
+            loginPage.headerDisplayed();
+        }
+    }
+
+    @When("I input {string} username and {string} password")
+    public void iInputUsernameAndPassword(String arg0, String arg1) {
+        loginPage.inputUsername(arg0);
+        loginPage.inputPassword(arg1);
     }
 }
